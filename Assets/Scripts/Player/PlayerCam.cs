@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerCam : MonoBehaviour {
+    [SerializeField] private GameObject mainInventoryGroup;
+
+
     public float sensX;
     public float sensY;
 
@@ -17,17 +20,20 @@ public class PlayerCam : MonoBehaviour {
     }
 
     private void Update() {
-        // get mouse input 
-        float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
-        float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
+        // get mouse input
+        if (!mainInventoryGroup.activeSelf) {
+            float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
+            float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
 
-        yRotation += mouseX;
-        xRotation -= mouseY;
-        // player cant look up or down more than 90 degrees
-        xRotation = Mathf.Clamp(xRotation, -90f, 90f);
-        // rotate cam and orientation
-        transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
-        orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+            yRotation += mouseX;
+            xRotation -= mouseY;
+            // player cant look up or down more than 90 degrees
+            xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+            // rotate cam and orientation
+
+            transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+            orientation.rotation = Quaternion.Euler(0, yRotation, 0);
+        }
     }
 
 }
