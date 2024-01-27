@@ -5,11 +5,23 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
-    /*
-        [Header("UI")]
-        public Image image;*/
+
+
+
+    [Header("UI")]
     public Image image;
+    public Text countText;
+
+    [HideInInspector] public Item item;
+    [HideInInspector] public int count = 1;
     [HideInInspector] public Transform parentAfterDrag;
+
+
+    public void InitializeItem(Item newItem) {
+        item = newItem;
+        image.sprite = newItem.image;
+        RefreshCount();
+    }
 
     public void OnBeginDrag(PointerEventData eventData) {
         Debug.Log("begindrag");
@@ -17,6 +29,10 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         transform.SetParent(transform.root);
         transform.SetAsLastSibling();
         image.raycastTarget = false;
+    }
+
+    public void RefreshCount() {
+        countText.text = count.ToString();
     }
 
     public void OnDrag(PointerEventData eventData) {
