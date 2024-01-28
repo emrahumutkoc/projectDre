@@ -8,10 +8,50 @@ public class InventoryManager : MonoBehaviour {
     public InventorySlot[] inventorySlots;
     public GameObject inventoryItemPrefab;
 
+    public int selectedSlot = -1;
     private bool isInventoryActive = false;
+
 
     private void Start() {
         mainInvontoryGroup.SetActive(isInventoryActive);
+        ChangeSelectedSlot(0);
+    }
+
+    private void Update() {
+        HandleInventorySelection();
+        HandleMainInventory();
+    }
+
+    private void HandleMainInventory() {
+        if (Input.GetKeyDown(KeyCode.Tab)) {
+            isInventoryActive = !isInventoryActive;
+            mainInvontoryGroup.SetActive(isInventoryActive);
+            if (isInventoryActive) {
+                Cursor.lockState = CursorLockMode.Confined;
+                Cursor.visible = true;
+            } else {
+                Cursor.lockState = CursorLockMode.Locked;
+                Cursor.visible = false;
+            }
+        }
+    }
+
+    private void HandleInventorySelection() {
+        if (Input.inputString != null) {
+            bool isNumber = int.TryParse(Input.inputString, out int number);
+            if (isNumber && number > 0 && number < 8) {
+                ChangeSelectedSlot(number - 1);
+            }
+        }
+    }
+
+    public void ChangeSelectedSlot(int newValue) {
+        if (selectedSlot >= 0) {
+            inventorySlots[selectedSlot].Deselect();
+        }
+        
+        inventorySlots[newValue].Select();
+        selectedSlot = newValue;
     }
 
     public bool AddItem(Item item) {
@@ -47,17 +87,24 @@ public class InventoryManager : MonoBehaviour {
         invetoryItem.InitializeItem(item);
     }
 
-    private void Update() {
-        if (Input.GetKeyDown(KeyCode.Tab)) {
-            isInventoryActive = !isInventoryActive;
-            mainInvontoryGroup.SetActive(isInventoryActive);
-            if (isInventoryActive) {
-                Cursor.lockState = CursorLockMode.Confined;
-                Cursor.visible = true;
-            } else {
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
+    public Item GetSelectedItem(bool use) {
+        InventorySlot slot = inventorySlots[selectedSlot];
+        InventoryItem itemInSlot = slot.GetComponentInChildren<InventoryItem>();
+        
+        if (itemInSlot != null) {
+            Item item = itemInSlot.item;
+            if (use) {
+                itemInSlot.count--;
+                if (itemInSlot.count <= 0) {
+                    Destroy(itemInSlot.gameObject);
+                } else {
+                    itemInSlot.RefreshCount();
+                }
             }
+            return item;
         }
+
+        return null;
+
     }
 }

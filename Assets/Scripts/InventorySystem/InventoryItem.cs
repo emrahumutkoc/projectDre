@@ -5,9 +5,6 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDragHandler {
-
-
-
     [Header("UI")]
     public Image image;
     public Text countText;
@@ -33,6 +30,7 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
 
     public void RefreshCount() {
         countText.text = count.ToString();
+        countText.gameObject.SetActive(count > 1);
     }
 
     public void OnDrag(PointerEventData eventData) {
