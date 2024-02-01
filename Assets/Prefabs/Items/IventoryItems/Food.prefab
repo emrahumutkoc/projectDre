@@ -152,4 +152,7 @@ MonoBehaviour:
   currentQuantity: 1
   maxQuantity: 16
   equippableItemIndex: 7
+  myEvent:
+    m_PersistentCalls:
+      m_Calls: []
   removeOneOnUse: 1

@@ -180,7 +180,6 @@ GameObject:
   - component: {fileID: 7094333900005513724}
   - component: {fileID: 2905193589297013763}
   - component: {fileID: 1649972510298342040}
-  - component: {fileID: 4255853110984552174}
   - component: {fileID: 7892613402694869991}
   - component: {fileID: 6405111817472411025}
   m_Layer: 3
@@ -264,25 +263,6 @@ MonoBehaviour:
     m_Bits: 64
   orientation: {fileID: 6699724107854197936}
   state: 0
---- !u!114 &4255853110984552174
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7052154821407235569}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c6486065af38b1143ba28b2d7f7808c4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playercameraTransform: {fileID: 0}
-  pickUpLayerMask:
-    serializedVersion: 2
-    m_Bits: 128
-  objectGrabPointTransform: {fileID: 0}
-  pickUpDistance: 1.75
-  inventoryManager: {fileID: 0}
 --- !u!114 &7892613402694869991
 MonoBehaviour:
   m_ObjectHideFlags: 0

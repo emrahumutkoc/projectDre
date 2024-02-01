@@ -147,14 +147,33 @@ public class Inventory : MonoBehaviour {
     }
 
     private void dropItem() {
-        for (int i = 0; i < allInventorySlots.Count; i++) {
+        //
+        if (curHotbarIndex > -1 && curHotbarIndex < hotbarSlots.Count) {
+            Slot curHotbarSlot = hotbarSlots[curHotbarIndex];
+            Item curHotbarItem = curHotbarSlot.getItem();
+            if (curHotbarItem != null) {
+                Item droppedItem = Instantiate(curHotbarSlot.getItem().gameObject, dropLocation.position, Quaternion.identity).GetComponent<Item>();
+                droppedItem.gameObject.SetActive(true);
+                droppedItem.currentQuantity = 1;
+                curHotbarSlot.getItem().currentQuantity -= 1;
+
+                curHotbarSlot.updateData();
+                if (curHotbarSlot.getItem().currentQuantity == 0) {
+                    curHotbarSlot.setItem(null);
+                    enableHotbarItem(curHotbarIndex);
+                }
+            }
+        }
+        
+        // hover drop
+        /*for (int i = 0; i < allInventorySlots.Count; i++) {
             Slot curSlot = allInventorySlots[i];
             if (curSlot.hovered && curSlot.hasItem()) {
                 // drop all items
-                /*curSlot.getItem().gameObject.SetActive(true);
+                *//*curSlot.getItem().gameObject.SetActive(true);
                 curSlot.getItem().transform.position = dropLocation.position;
                 curSlot.setItem(null);
-                break;*/
+                break;*//*
                 Item droppedItem = Instantiate(curSlot.getItem().gameObject, dropLocation.position, Quaternion.identity).GetComponent<Item>();
                 droppedItem.gameObject.SetActive(true);
                 droppedItem.currentQuantity = 1;
@@ -167,7 +186,7 @@ public class Inventory : MonoBehaviour {
 
                 break;
             }
-        }
+        }*/
     }
 
     private void dragInventoryIcon() {
