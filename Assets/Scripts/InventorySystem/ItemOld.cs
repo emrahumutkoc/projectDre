@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 
 [CreateAssetMenu(menuName ="Scriptable object/item")]
-public class Item : ScriptableObject{
+public class ItemOld : ScriptableObject{
 
-
+    
     [Header("Only gameplay")]
     public TileBase tile;
     public ItemType type;
@@ -19,7 +19,6 @@ public class Item : ScriptableObject{
 
     [Header("Both")]
     public Sprite image;
-
 }
 
 public enum ItemType {

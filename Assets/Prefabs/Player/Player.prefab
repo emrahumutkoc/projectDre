@@ -49,7 +49,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3971306395431631548}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -163,7 +163,7 @@ Transform:
   m_GameObject: {fileID: 6316835313782515062}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.757, z: 0.241}
+  m_LocalPosition: {x: 0, y: 0.757, z: 0.547}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -180,7 +180,10 @@ GameObject:
   - component: {fileID: 7094333900005513724}
   - component: {fileID: 2905193589297013763}
   - component: {fileID: 1649972510298342040}
-  m_Layer: 0
+  - component: {fileID: 4255853110984552174}
+  - component: {fileID: 7892613402694869991}
+  - component: {fileID: 6405111817472411025}
+  m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -244,13 +247,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb4e8076f81eb064dbfed9ca2a0895c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 7
-  sprintSpeed: 10
-  groundDrag: 5
-  jumpForce: 5
-  jumpCooldown: 0.5
+  walkSpeed: 3
+  sprintSpeed: 5
+  groundDrag: 2
+  jumpForce: 3
+  jumpCooldown: 2
   airMultiplier: 0.4
-  crouchSpeed: 2
+  crouchSpeed: 1
   crouchYScale: 0.5
   jumpKey: 32
   sprintKey: 304
@@ -261,3 +264,98 @@ MonoBehaviour:
     m_Bits: 64
   orientation: {fileID: 6699724107854197936}
   state: 0
+--- !u!114 &4255853110984552174
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7052154821407235569}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6486065af38b1143ba28b2d7f7808c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playercameraTransform: {fileID: 0}
+  pickUpLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
+  objectGrabPointTransform: {fileID: 0}
+  pickUpDistance: 1.75
+  inventoryManager: {fileID: 0}
+--- !u!114 &7892613402694869991
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7052154821407235569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e129b63d2fea26c4c9642984c35c5a88, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: {fileID: 0}
+  inventorySlots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  hotbarSlots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  crosshair: {fileID: 0}
+  itemHoverText: {fileID: 0}
+  raycastDistance: 5
+  itemLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  dropLocation: {fileID: 0}
+  dragIconImage: {fileID: 0}
+  equippableItems:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  selectedItemImage: {fileID: 0}
+--- !u!114 &6405111817472411025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7052154821407235569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4a0963259db1ba4ab4c953476bb50ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  food: 0
+  water: 0

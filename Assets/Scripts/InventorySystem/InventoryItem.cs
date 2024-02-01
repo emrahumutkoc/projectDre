@@ -9,12 +9,13 @@ public class InventoryItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public Image image;
     public Text countText;
 
-    [HideInInspector] public Item item;
+    [HideInInspector] public ItemOld item;
     [HideInInspector] public int count = 1;
     [HideInInspector] public Transform parentAfterDrag;
+    [HideInInspector] public ObjectGrabbable grabbableObject;
 
 
-    public void InitializeItem(Item newItem) {
+    public void InitializeItem(ItemOld newItem) {
         item = newItem;
         image.sprite = newItem.image;
         RefreshCount();

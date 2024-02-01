@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerCam : MonoBehaviour {
     [SerializeField] private GameObject mainInventoryGroup;
 
+    [SerializeField] private GameObject inventory;
+
 
     public float sensX;
     public float sensY;
@@ -21,7 +23,7 @@ public class PlayerCam : MonoBehaviour {
 
     private void Update() {
         // get mouse input
-        if (!mainInventoryGroup.activeSelf) {
+        if (!inventory.activeSelf) {
             float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
             float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
 

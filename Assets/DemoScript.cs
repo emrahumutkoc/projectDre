@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DemoScript : MonoBehaviour {
     public InventoryManager inventoryManager;
-    public Item[] itemsToPickup;
+    public ItemOld[] itemsToPickup;
 
     public void PickUpItem(int id) {
         bool isAdded = inventoryManager.AddItem(itemsToPickup[id]);
@@ -17,7 +17,7 @@ public class DemoScript : MonoBehaviour {
     }
 
     public void GetSelectedItem() {
-        Item receivedItem = inventoryManager.GetSelectedItem(false);
+        ItemOld receivedItem = inventoryManager.GetSelectedItem();
         if (receivedItem != null) {
             Debug.Log("Received item" + receivedItem);
         } else {
@@ -26,7 +26,7 @@ public class DemoScript : MonoBehaviour {
     }
 
     public void UseSelectedItem() {
-        Item receivedItem = inventoryManager.GetSelectedItem(true);
+        ItemOld receivedItem = inventoryManager.UseSelectedItem();
         if (receivedItem != null) {
             Debug.Log("Item Used" + receivedItem);
         } else {
